@@ -21,7 +21,7 @@ parameters:
   flavor:
     type: string
     description: Flavor for the instances to be created
-    default: m1.small
+    default: small.silver
     constraints:
       - custom_constraint: nova.flavor
         description: Must be a flavor known to Nova
