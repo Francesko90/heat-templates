@@ -97,10 +97,11 @@ resources:
 
                 #sed -i "/Deny from All/d" /etc/apache2/conf-enabled/wordpress.conf
                 #sed -i "s/Require local/Require all granted/" /etc/httpd/conf-enabled/wordpress.conf
-                sed -i s/database_name_here/$db_name/ /etc/wordpress/wp-config.php
-                sed -i s/username_here/$db_user/ /etc/wordpress/wp-config.php
-                sed -i s/password_here/$db_password/ /etc/wordpress/wp-config.php
-                sed -i s/localhost/$db_host/ /etc/wordpress/wp-config.php
+                WORDPRESS_PATH="/usr/share/wordpress/wp-config.php"
+                sed -i s/database_name_here/$db_name/ $WORDPRESS_PATH
+                sed -i s/username_here/$db_user/ $WORDPRESS_PATH
+                sed -i s/password_here/$db_password/ $WORDPRESS_PATH
+                sed -i s/localhost/$db_host/ $WORDPRESS_PATH
 
                 service apache2 restart
               params:
