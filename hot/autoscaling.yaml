@@ -102,7 +102,9 @@ resources:
                 sed -i s/username_here/$db_user/ $WORDPRESS_PATH
                 sed -i s/password_here/$db_password/ $WORDPRESS_PATH
                 sed -i s/localhost/$db_host/ $WORDPRESS_PATH
-
+                
+                cp $WORDPRESS_PATH "/etc/wordpress/wp-config.php"
+                sudo ln -s /usr/share/wordpress /var/www/html/wordpress
                 service apache2 restart
               params:
                 $db_name: {get_param: database_name}
