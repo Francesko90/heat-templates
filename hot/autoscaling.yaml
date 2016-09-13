@@ -50,8 +50,13 @@ resources:
             # Set a demo pwd to access from VNC
             echo "root:test" | sudo chpasswd
             
+            # Start MySQL installation
             apt-get update
-            apt-get install -y  mysql-server
+            export DEBIAN_FRONTEND=noninteractive
+            apt-get -q -y install mysql-server
+            # Setting bind address and port to mysql remote access
+            sed -i "s/127.0.0.1/0.0.0.0/g" /etc/mysql/my.cnf
+            service mysql restart
             mysqladmin -u root password $db_rootpassword
             cat << EOF | mysql -u root --password=$db_rootpassword
             CREATE DATABASE $db_name;
